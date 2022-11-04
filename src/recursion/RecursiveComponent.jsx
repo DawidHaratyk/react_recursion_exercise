@@ -1,21 +1,24 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 
 function RecursiveComponent({ components, currentIndex }) {
-  return currentIndex < components.length ? (
-    <div className="App-box">
-      <div>{components[currentIndex].name}</div>
-      <RecursiveComponent
-        components={components}
-        currentIndex={currentIndex + 1}
-      />
-    </div>
-  ) : null;
+  const CurrentComponent = components[currentIndex];
+
+  return (
+    currentIndex < components.length && (
+      <CurrentComponent>
+        <RecursiveComponent
+          components={components}
+          currentIndex={currentIndex + 1}
+        />
+      </CurrentComponent>
+    )
+  );
 }
 
 RecursiveComponent.propTypes = {
   components: PropTypes.arrayOf(PropTypes.elementType).isRequired,
-  currentIndex: PropTypes.number,
+  currentIndex: PropTypes.number.isRequired,
 };
 
-export default RecursiveComponent;
+export default memo(RecursiveComponent);

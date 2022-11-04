@@ -2,10 +2,24 @@ import React from "react";
 import RecursiveComponent from "./RecursiveComponent";
 import useTimer from "../hooks/useTimer";
 
-// write components here
-const One = () => <div className="App-box">One</div>;
-const Two = () => <div className="App-box">Two</div>;
-const Three = () => <div className="App-box">Three</div>;
+const One = ({ children }) => (
+  <div className="App-box">
+    One
+    {children}
+  </div>
+);
+const Two = ({ children }) => (
+  <div className="App-box">
+    Two
+    {children}
+  </div>
+);
+const Three = ({ children }) => (
+  <div className="App-box">
+    Three
+    {children}
+  </div>
+);
 
 const components = [One, Two, Three];
 
@@ -19,9 +33,5 @@ function Recursion() {
     </div>
   );
 }
-
-Recursion.propTypes = {
-  // ...
-};
 
 export default Recursion;
